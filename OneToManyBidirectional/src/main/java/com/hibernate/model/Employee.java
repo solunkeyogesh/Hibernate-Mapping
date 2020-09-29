@@ -18,27 +18,26 @@ import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+
+//@Cacheable
+//@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 @Entity
 @Table(name = "empTable")
+
 public class Employee {
 
 	@Id
 	@Column(name = "employee_id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer employeeId;
 	private String employeeName;
 	private String employeeNumber;
 
-	/*
-	 * @OneToMany(cascade=CascadeType.ALL,mappedBy="employee",fetch=FetchType.EAGER)
-	 */
-	
-	
-	@OneToMany(cascade= CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	@Fetch(FetchMode.JOIN)
-	@JoinColumn(name="employee_id", referencedColumnName="employee_id")
+	@JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
 	@JsonManagedReference
-	private List<Address> address= new ArrayList<Address>();;
+	private List<Address> address = new ArrayList<Address>();;
 
 	public List<Address> getAddress() {
 		return address;
@@ -48,7 +47,6 @@ public class Employee {
 		this.address = address;
 	}
 
-	 
 	public Integer getEmployeeId() {
 		return employeeId;
 	}

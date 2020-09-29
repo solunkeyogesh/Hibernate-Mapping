@@ -42,6 +42,14 @@ public class HibernateConfiguration {
 
 	@Value("${entitymanager.packagesToScan}")
 	private String ENTITYMANAGER_PACKAGES_TO_SCAN;
+	
+	//@Value("${hibernate.cache.use_query_cache}")
+	//private String HIBERNATE_CACHE_USE_QUERY_CACHE;
+	
+	//@Value("${hibernate.cache.region.factory_class}")
+	//private String HIBERNATE_CACHE_REGION_FACTORY_CLASS;
+	
+	
 
 	@Bean
 	public DataSource dataSource() {
@@ -63,6 +71,8 @@ public class HibernateConfiguration {
 		hibernateProperties.put("hibernate.show_sql", HIBERNATE_SHOW_SQL);
 		hibernateProperties.put("hibernate.format_sql", HIBERNATE_FORMAT_SQL);
 		hibernateProperties.put("hibernate.hbm2ddl.auto", HIBERNATE_HBM2DDL_AUTO);
+		//hibernateProperties.put("hibernate.cache.use_query_cache", HIBERNATE_CACHE_USE_QUERY_CACHE);
+		//hibernateProperties.put("hibernate.cache.region.factory_class", HIBERNATE_CACHE_REGION_FACTORY_CLASS);
 		sessionFactory.setHibernateProperties(hibernateProperties);
 		return sessionFactory;
 	}
